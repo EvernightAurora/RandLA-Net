@@ -1,7 +1,7 @@
 the code RandLA-Net
 
 
-[Previous MD](//README.md)
+[Previous MD](/README.md)
 
 
 
