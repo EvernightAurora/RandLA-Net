@@ -13,9 +13,12 @@ the code RandLA-Net
 
 这个版本修改了，可以
 
->Tensorflow 2.4.0
+>Tensorflow 2.4
+>
 >CUDA 11.1
+>
 >Cudnn （忘了多少)
+>
 >python 3.6.13
 
 
