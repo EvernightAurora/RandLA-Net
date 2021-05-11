@@ -2,11 +2,19 @@ from os.path import exists, join
 from os import makedirs
 from sklearn.metrics import confusion_matrix
 from helper_tool import DataProcessing as DP
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import numpy as np
 import helper_tf_util
 import time
 
+
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
 
 def log_out(out_str, f_out):
     f_out.write(out_str + '\n')
@@ -157,7 +165,7 @@ class Network:
                        self.logits,
                        self.labels,
                        self.accuracy]
-                _, _, summary, l_out, probs, labels, acc = self.sess.run(ops, {self.is_training: True})
+                _, _, summary, l_out, probs, labels, acc = self.sess.run(ops, {self.is_training: True},options=tf.RunOptions(report_tensor_allocations_upon_oom = True))
                 self.train_writer.add_summary(summary, self.training_step)
                 t_end = time.time()
                 if self.training_step % 50 == 0:
